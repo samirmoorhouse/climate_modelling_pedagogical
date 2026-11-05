@@ -8,7 +8,8 @@ import pandas as pd
 
 start_time = time.time()
 
-### --- 1. FUNDAMENTAL CONSTANTS --- ###
+
+# <editor-fold desc="constants">
 sigma = 5.670374419e-8  # Stefan-Boltzmann constant (W/m^2/K^4)
 S0 = 1361              # Solar constant (W/m^2)
 Q = S0 / 4             # Average solar insolation (W/m^2)
@@ -29,10 +30,10 @@ cp_h2o_vap = 1860      # Specific heat of water vapor (J/kg/K)
 T_sun = 5778.0              # Sun surface temperature (K)
 sun_radius = 695700000      # Radius of the Sun (m)
 earth_sun_distance = 149597870700  # Mean Earth-Sun distance (m)
+# </editor-fold>
 
 
-### --- 2. SIMULATION PARAMETERS & TOGGLES --- ###
-
+# <editor-fold desc="parameters">
 # -- Time & Grid Settings --
 start_year, start_month, start_day = 2010, 1, 1
 years = 2
@@ -69,6 +70,7 @@ dynamic_ice_albedo = False        # Allow albedo to vary with surface temperatur
 lock_surface_after_switch = False # Fix surface temperature after the CO2 perturbation
 
 diffusivity_factor = 1.66  # Diffusivity factor for LW angular integration
+# </editor-fold>
 
 
 ### --- 3. SEASONAL & TOPOGRAPHIC DATA LOADING --- ###
@@ -155,14 +157,14 @@ T_initial = np.concatenate((
 
 ### --- 5. DATA LOADING & INTERPOLATION (HITRAN) --- ###
 print("Loading pre-computed K tables (HITRAN)...")
-ktable_co2    = np.load("data/hitran_tables/k_table_co2_lw_new_gauss_8.npz",    allow_pickle=True)['k_table'].item()
-ktable_h2o    = np.load("data/hitran_tables/k_table_h2o_lw_gauss_8.npz",        allow_pickle=True)['k_table'].item()
-ktable_h2o_sw = np.load("data/hitran_tables/k_table_h2o_sw_new_gauss_8.npz",    allow_pickle=True)['k_table'].item()
-ktable_ch4    = np.load("data/hitran_tables/k_table_ch4_new_gauss_8.npz",        allow_pickle=True)['k_table'].item()
-ktable_o3     = np.load("data/hitran_tables/k_table_o3_lw_new_gauss_8.npz",     allow_pickle=True)['k_table'].item()
-ktable_o3_sw  = np.load("data/hitran_tables/k_table_o3_sw_new_gauss_8_ex.npz",  allow_pickle=True)['k_table'].item()
+ktable_co2    = np.load("data/HITRAN/k_table_co2_lw_new_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_h2o    = np.load("data/HITRAN/k_table_h2o_lw_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_h2o_sw = np.load("data/HITRAN/k_table_h2o_sw_new_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_ch4    = np.load("data/HITRAN/k_table_ch4_new_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_o3     = np.load("data/HITRAN/k_table_o3_lw_new_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_o3_sw  = np.load("data/HITRAN/k_table_o3_sw_new_gauss_8_ex.npz", allow_pickle=True)['k_table'].item()
 
-cia_data   = np.load("data/hitran_tables/cia_table_combined.npz", allow_pickle=True)
+cia_data   = np.load("data/HITRAN/cia_table_combined.npz", allow_pickle=True)
 cia_t_grid = cia_data['T_grid']
 cia_lw, cia_sw = cia_data['cia_lw'].item(), cia_data['cia_sw'].item()
 

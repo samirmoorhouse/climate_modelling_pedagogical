@@ -170,14 +170,14 @@ def get_cloud_profiles(cld_pressures, cld_fractions, cld_albedos, cld_taus, p_mi
 
 ### --- 5. DATA LOADING & INTERPOLATION (HITRAN) --- ###
 print("Loading pre-computed K tables (HITRAN)...")
-ktable_co2    = np.load("data/hitran_tables/k_table_co2_lw_gauss_8.npz", allow_pickle=True)['k_table'].item()
-ktable_h2o    = np.load("data/hitran_tables/k_table_h2o_lw_gauss_8.npz",        allow_pickle=True)['k_table'].item()
-ktable_h2o_sw = np.load("data/hitran_tables/k_table_h2o_sw_gauss_8.npz", allow_pickle=True)['k_table'].item()
-ktable_ch4    = np.load("data/hitran_tables/k_table_ch4_gauss_8.npz", allow_pickle=True)['k_table'].item()
-ktable_o3     = np.load("data/hitran_tables/k_table_o3_lw_gauss_8.npz", allow_pickle=True)['k_table'].item()
-ktable_o3_sw  = np.load("data/hitran_tables/k_table_o3_sw_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_co2    = np.load("data/HITRAN/k_table_co2_lw_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_h2o    = np.load("data/HITRAN/k_table_h2o_lw_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_h2o_sw = np.load("data/HITRAN/k_table_h2o_sw_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_ch4    = np.load("data/HITRAN/k_table_ch4_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_o3     = np.load("data/HITRAN/k_table_o3_lw_gauss_8.npz", allow_pickle=True)['k_table'].item()
+ktable_o3_sw  = np.load("data/HITRAN/k_table_o3_sw_gauss_8.npz", allow_pickle=True)['k_table'].item()
 
-cia_data   = np.load("data/hitran_tables/cia_table_combined.npz", allow_pickle=True)
+cia_data   = np.load("data/HITRAN/cia_table_combined.npz", allow_pickle=True)
 cia_t_grid = cia_data['T_grid']
 cia_lw     = cia_data['cia_lw'].item()
 cia_sw     = cia_data['cia_sw'].item()
